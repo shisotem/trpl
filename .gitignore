@@ -1,5 +1,4 @@
 **/target/
 hello_world/main
-Cargo.lock
 **/*.rs.bk
 /.vscode/
