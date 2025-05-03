@@ -37,4 +37,12 @@ fn main() {
     // let r1 = &mut s;
     // let r2 = &mut s;
     // println!("{}, {}", r1, r2);
+
+    // // dangling pointer => compile err
+    // let reference_to_nothing = dangle();
 }
+
+// fn dangle() -> &String {
+//     let s = String::from("hello");
+//     &s
+// } // s: drop => &s: dangling pointer!?
