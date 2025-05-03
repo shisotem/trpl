@@ -15,6 +15,10 @@ fn main() {
 
     // println!("{}", s); // err
     println!("{}", x); // ok
+
+    let a = String::from("hello");
+    let (b, len) = calculate_length(a);
+    println!("The length of '{}' is {}.", b, len);
 }
 
 fn takes_ownership(some_string: String) {
@@ -24,3 +28,13 @@ fn takes_ownership(some_string: String) {
 fn makes_copy(some_integer: i32) {
     println!("{}", some_integer);
 }
+
+fn calculate_length(s: String) -> (String, usize) {
+    // s: move
+    let length = s.len();
+    (s, length)
+} // s, length: move
+
+// 所有権を取り、またその所有権を戻す、ということを全ての関数でしていたら、ちょっとめんどくさいですね。
+// 関数に値は使わせるものの所有権を取らないようにさせるにはどうするべきでしょうか。
+// => 参照
