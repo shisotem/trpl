@@ -4,6 +4,13 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    // self(ただし稀), &self, &mut selfを使い分ける
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
 fn main() {
     let rect1 = Rectangle {
         width: 30,
@@ -11,13 +18,10 @@ fn main() {
     };
     println!(
         "The area of the rectangle is {} square pixels.",
-        area(&rect1) // 借用 => mainは所有権を保ち、 rect1を使用し続けることができる
+        rect1.area() // 借用 => mainは所有権を保ち、 rect1を使用し続けることができる
     );
-    // println!("rect1 is {}", rect1); // {}: Display=エンドユーザ向け (注: 構造体にはDisplayトレイトが導出されていない)
-    println!("rect1 is {:?}", rect1); // {}: Debug=デバッグ向け
-    println!("rect1 is {:#?}", rect1);
-}
 
-fn area(rectangle: &Rectangle) -> u32 {
-    rectangle.width * rectangle.height
+    // // println!("rect1 is {}", rect1); // {}: Display=エンドユーザ向け (注: 構造体にはDisplayトレイトが導出されていない)
+    // println!("rect1 is {:?}", rect1); // {}: Debug=デバッグ向け
+    // println!("rect1 is {:#?}", rect1);
 }
