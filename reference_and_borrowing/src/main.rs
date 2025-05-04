@@ -14,6 +14,9 @@
 
 // // 可変な参照を受け入れる
 // fn change(some_string: &mut String) {
+//     // push_strはStringに対して定義されているが、
+//     // Rustにはメソッド呼び出し時に必要なだけ自動でデリファレンスを行う仕組みがある
+//     // 概念的にはこう: (*some_string).push_str(", world");
 //     some_string.push_str(", world");
 // }
 
