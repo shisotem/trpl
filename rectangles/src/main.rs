@@ -1,11 +1,19 @@
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
 fn main() {
-    let rect1 = (30, 50); // 縦横がどちらか不明
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
     println!(
         "The area of the rectangle is {} square pixels.",
-        area(rect1);
+        area(&rect1) // 借用 => mainは所有権を保ち、 rect1を使用し続けることができる
     );
 }
 
-fn area(dimensions: (u32, u32)) -> u32 {
-    dimensions.0 * dimensions.1
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
 }
