@@ -14,6 +14,10 @@ fn main() {
     let s3_literal = "hello world";
     let word3_literal = first_word3(&s3_literal[..]);
     let word3_literal = first_word3(s3_literal); // 文字列リテラルはそれ自体既に文字列スライス
+
+    // その他のコレクションへのスライス: 文字列スライスと同様に、ptrとlenを保持
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[..3]; // &[i32]
 }
 
 fn first_word(s: &String) -> usize {
