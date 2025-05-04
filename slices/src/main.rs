@@ -7,7 +7,13 @@ fn main() {
     let mut s2 = String::from("hello world");
     let word2 = first_word2(&s2);
     s2.clear(); // 可変参照
-    // println!("the first word is: {}", word2); // compile err (word2: &str...不変参照)
+                // println!("the first word is: {}", word2); // compile err (word2: &str...不変参照)
+
+    let s3 = String::from("hello world");
+    let word3 = first_word3(&s3[..]);
+    let s3_literal = "hello world";
+    let word3_literal = first_word3(&s3_literal[..]);
+    let word3_literal = first_word3(s3_literal); // 文字列リテラルはそれ自体既に文字列スライス
 }
 
 fn first_word(s: &String) -> usize {
@@ -30,6 +36,17 @@ fn first_word(s: &String) -> usize {
 // cf. referece_and_borrowing/src/main.rs
 
 fn first_word2(s: &String) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+    &s[..]
+}
+
+// より一般的で優れたAPI
+fn first_word3(s: &str) -> &str {
     let bytes = s.as_bytes();
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
