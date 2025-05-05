@@ -21,4 +21,13 @@ impl Message {
 fn main() {
     let m = Message::Write(String::from("hello"));
     m.call();
+
+    // Option::省略
+    let some_number = Some(5);
+    let some_string = Some("something");
+    let absent_number: Option<i32> = None;
+
+    // // Option<T> Enum: 他言語のnullよりも優れたしくみ
+    // T: Rustではnullの可能性が皆無であることが保証される。自信を持って進める
+    // Option<T>: nullの可能性がある場合はこちらにTを保持するようにする。Option<T>からTを取り出すことを課す (match)
 }
