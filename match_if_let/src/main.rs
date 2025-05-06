@@ -14,6 +14,10 @@ enum Coin {
 fn main() {
     let coin1 = Coin::Quarter(UsState::Alaska);
     let coin1_in_cent = value_in_cents(coin1); // State quarter from Alaska!
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
 }
 
 fn value_in_cents(coin: Coin) -> u32 {
@@ -26,5 +30,12 @@ fn value_in_cents(coin: Coin) -> u32 {
             println!("State quarter from {:?}!", state);
             25
         }
+    }
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
     }
 }
