@@ -17,17 +17,41 @@
 //     self::front_of_house::hosting::add_to_waitlist();
 // }
 
-fn serve_order() {}
+// fn serve_order() {}
 
+// mod back_of_house {
+//     fn fix_incorrect_order() {
+//         cook_order();
+
+//         // Absolute path
+//         crate::serve_order();
+//         // Relative path
+//         super::serve_order();
+//     }
+
+//     fn cook_order() {}
+// }
+
+// 構造体はフィールド毎にpubをつけるか判断
 mod back_of_house {
-    fn fix_incorrect_order() {
-        cook_order();
-
-        // Absolute path
-        crate::serve_order();
-        // Relative path
-        super::serve_order();
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
     }
 
-    fn cook_order() {}
+    impl Breakfast {
+        // constructor needed
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from("peaches"),
+            }
+        }
+    }
+}
+
+pub fn eat_at_restaurant() {
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+    meal.toast = String::from("Wheat");
+    // meal.seasonal_fruit = String::from("blueberries"); // err
 }
