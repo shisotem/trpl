@@ -26,4 +26,11 @@ fn main() {
     // let first = &e[0];
     // e.push(6);
     // println!("The first element is: {}", first);
+
+    // for
+    let mut f = vec![1, 2, 3, 4, 5];
+    for i in &mut f {
+        *i += 50;
+    }
+    println!("{:?}", f);
 }
