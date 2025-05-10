@@ -20,4 +20,10 @@ fn main() {
     // 存在しない要素への参照
     // let does_not_exist = &d[100]; // panic
     let does_not_exist = d.get(100); // => None
+
+    // 借用規則 (borrow-checker)
+    let mut e = vec![1, 2, 3, 4, 5];
+    // let first = &e[0];
+    // e.push(6);
+    // println!("The first element is: {}", first);
 }
