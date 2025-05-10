@@ -115,13 +115,38 @@
 //     // ...
 // }
 
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-    }
-}
+// mod front_of_house {
+//     pub mod hosting {
+//         pub fn add_to_waitlist() {}
+//     }
+// }
 
-// re-exporting: あたかもここのスコープ(crate::)でhostingという名前で定義されているかのように外部に見せる
+// // re-exporting: あたかもここのスコープ(crate::)でhostingという名前で定義されているかのように外部に見せる
+// pub use crate::front_of_house::hosting;
+
+// pub fn eat_at_restaurant() {
+//     hosting::add_to_waitlist();
+//     hosting::add_to_waitlist();
+//     hosting::add_to_waitlist();
+// }
+
+// // クレートからスコープへと持ち込む
+// use rand::Rng;
+
+// fn main() {
+//     let secret_number = rand::thread_rng().gen_range(1..=100);
+// }
+
+// use std::{cmp::Ordering, io};
+
+// use std::io::{self, Write};
+
+// use std::collections::*;
+
+// --------------
+
+mod front_of_house;
+
 pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant() {
@@ -129,16 +154,3 @@ pub fn eat_at_restaurant() {
     hosting::add_to_waitlist();
     hosting::add_to_waitlist();
 }
-
-// クレートからスコープへと持ち込む
-use rand::Rng;
-
-fn main() {
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-}
-
-// use std::{cmp::Ordering, io};
-
-// use std::io::{self, Write};
-
-use std::collections::*;
