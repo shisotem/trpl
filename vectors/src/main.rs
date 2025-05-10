@@ -5,4 +5,19 @@ fn main() {
     let mut c = Vec::new();
     c.push(5);
     c.push(6);
+
+    // ベクタの要素を読む2つの方法
+    let d = vec![1, 2, 3, 4, 5];
+
+    let third: &i32 = &d[2];
+    println!("The third element is {}", third);
+
+    match d.get(2) {
+        Some(third) => println!("The third element is {}", third),
+        None => println!("There is no third element."),
+    }
+
+    // 存在しない要素への参照
+    // let does_not_exist = &d[100]; // panic
+    let does_not_exist = d.get(100); // => None
 }
