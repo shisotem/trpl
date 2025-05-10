@@ -129,3 +129,16 @@ pub fn eat_at_restaurant() {
     hosting::add_to_waitlist();
     hosting::add_to_waitlist();
 }
+
+// クレートからスコープへと持ち込む
+use rand::Rng;
+
+fn main() {
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+}
+
+// use std::{cmp::Ordering, io};
+
+// use std::io::{self, Write};
+
+use std::collections::*;
