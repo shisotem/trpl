@@ -1,5 +1,5 @@
 // lib.rs: restaurant(=package名)という名前の、ライブラリクレートのクレートルート(クレートルート=>crateモジュールを暗黙的に形成)
-// (https://chatgpt.com/share/681e3458-437c-8005-930c-45683a2a787c)
+// (https://chatgpt.com/share/681f453c-9d80-8005-845e-326658ddfb1d)
 
 // // eat_at_restaurantとfront_of_houseは同じcrateモジュールで定義されている(兄弟)ので、pubがなくてもアクセスできる
 // mod front_of_house {
@@ -93,24 +93,39 @@
 //     }
 // }
 
-use std::fmt;
-use std::io;
+// use std::fmt;
+// use std::io;
 
-fn function1() -> fmt::Result {
-    // ...
+// fn function1() -> fmt::Result {
+//     // ...
+// }
+
+// fn function2() -> io::Result<()> {
+//     // ...
+// }
+
+// use std::fmt::Result;
+// use std::io::Result as IoResult;
+
+// fn function1() -> Result {
+//     // ...
+// }
+
+// fn function2() -> IoResult<()> {
+//     // ...
+// }
+
+mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
 }
 
-fn function2() -> io::Result<()> {
-    // ...
-}
+// re-exporting: あたかもここのスコープ(crate::)でhostingという名前で定義されているかのように外部に見せる
+pub use crate::front_of_house::hosting;
 
-use std::fmt::Result;
-use std::io::Result as IoResult;
-
-fn function1() -> Result {
-    // ...
-}
-
-fn function2() -> IoResult<()> {
-    // ...
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
 }
