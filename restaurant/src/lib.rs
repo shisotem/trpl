@@ -56,15 +56,39 @@
 //     // meal.seasonal_fruit = String::from("blueberries"); // err
 // }
 
-// enumを公開するとその列挙子はすべて公開される
-mod back_of_house {
-    pub enum Appetizer {
-        Soup,
-        Salad,
+// // enumを公開するとその列挙子はすべて公開される
+// mod back_of_house {
+//     pub enum Appetizer {
+//         Soup,
+//         Salad,
+//     }
+// }
+
+// pub fn eat_at_restaurant() {
+//     let order1 = back_of_house::Appetizer::Soup;
+//     let order2 = back_of_house::Appetizer::Salad;
+// }
+
+// --------------
+
+mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
     }
 }
 
+use crate::front_of_house::hosting;
+
 pub fn eat_at_restaurant() {
-    let order1 = back_of_house::Appetizer::Soup;
-    let order2 = back_of_house::Appetizer::Salad;
+    hosting::add_to_waitlist();
+}
+
+mod example {
+    // 構造体やenumなどなどはfull pathが慣例
+    use std::collections::HashMap;
+
+    fn example_fn() {
+        let mut map = HashMap::new();
+        map.insert(1, 2);
+    }
 }
